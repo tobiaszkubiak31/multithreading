@@ -4,8 +4,13 @@ public class Radar {
 
     private PatriotBattery battery;
 
-    public Radar(PatriotBattery battery) {
+    private int defaultAmountOfRockets = 5;
+
+    private RocketStarterMechanism rocketStarterMechanism;
+
+    public Radar(PatriotBattery battery,RocketStarterMechanism rocketStarterMechanism) {
         this.battery = battery;
+        this.rocketStarterMechanism = rocketStarterMechanism;
     }
 
     public void notice(Scud enemyMissle) {
@@ -18,7 +23,7 @@ public class Radar {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    battery.launchPatriot(enemyMissle);
+                    battery.launchPatriot(enemyMissle, defaultAmountOfRockets,rocketStarterMechanism);
                 }
             }
         };
