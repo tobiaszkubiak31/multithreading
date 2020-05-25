@@ -23,6 +23,12 @@ public class RadarTest {
 			.launchPatriot(enemyMissle, expectedLaunchedRockets, rocketStarterMechanism);
 	}
 
-
+	@Test
+	public void launchPatriotOnceWhenBatteryIsNull() {
+		PatriotBattery bateryMock = null;
+		BetterRadar radar = new BetterRadar(bateryMock, 2, mock(RocketStarterMechanism.class));
+		Scud enemyMissle = new Scud();
+		assertThrows(NullPointerException.class, () -> radar.notice(enemyMissle));
+	}
 
 }
